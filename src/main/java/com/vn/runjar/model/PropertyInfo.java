@@ -24,7 +24,7 @@ public class PropertyInfo {
             log.info("PropertyInfo initialProperty() START");
             String pathParent = Objects.requireNonNull(AppUtil.class.getResource("/")).getPath();
             log.info("PropertyInfo initialProperty() PATH : {}", pathParent);
-            Path pathStr = Paths.get(pathParent).getParent();
+            Path pathStr = Paths.get(pathParent).getParent().getParent();
             String url;
             String urlSub;
             if (Constant.MAIN_STRING.equals(key)) {
