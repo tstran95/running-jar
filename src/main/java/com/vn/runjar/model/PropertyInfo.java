@@ -24,11 +24,11 @@ public class PropertyInfo {
             log.info("PropertyInfo initialProperty() START");
             String pathParent = Objects.requireNonNull(AppUtil.class.getResource("/")).getPath();
             log.info("PropertyInfo initialProperty() PATH : {}", pathParent);
-            Path pathStr = Paths.get(pathParent).getParent().getParent().getParent().getParent();
+            Path pathStr = Paths.get(pathParent).getParent();
             String url;
             String urlSub;
             if (Constant.MAIN_STRING.equals(key)) {
-                urlSub = pathStr.getParent().getParent().getParent().toString();
+                urlSub = pathStr.getParent().getParent().getParent().getParent().getParent().getParent().toString();
             } else {
                 urlSub = pathStr.toString();
             }
