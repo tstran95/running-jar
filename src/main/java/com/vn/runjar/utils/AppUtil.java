@@ -2,19 +2,15 @@ package com.vn.runjar.utils;
 
 import com.vn.runjar.constant.Constant;
 import com.vn.runjar.exception.VNPAYException;
-import com.vn.runjar.model.PropertyInfo;
 import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -89,8 +85,8 @@ public class AppUtil {
         log.info("AppUtil watchEvent START");
         try (Jedis jedis = jedisPool.getResource()) {
             WatchKey key;
-            PropertyInfo.instance(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
-            String path = PropertyInfo.path;
+            PropertyUtil.instance(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
+            String path = PropertyUtil.path;
 
             WatchService watcher = FileSystems.getDefault().newWatchService();
             Path dir = Paths.get(path).getParent();

@@ -6,7 +6,7 @@ import com.vn.runjar.config.JedisPoolFactory;
 import com.vn.runjar.constant.Constant;
 import com.vn.runjar.exception.VNPAYException;
 import com.vn.runjar.model.ClassInfo;
-import com.vn.runjar.model.PropertyInfo;
+import com.vn.runjar.utils.PropertyUtil;
 import com.vn.runjar.response.Response;
 import com.vn.runjar.services.AppService;
 import com.vn.runjar.validation.Validator;
@@ -52,8 +52,8 @@ public class AppServiceImpl implements AppService {
             String className = classInfo.getClassName();
             String libName = Objects.isNull(classInfo.getLibName()) ? Constant.EMPTY : classInfo.getLibName();
             log.info("AppServiceImpl method run() RUNNING with LibName {}", libName);
-            PropertyInfo.initialProperty(Constant.APP_STRING , libName , className);
-            String path = PropertyInfo.path;
+            PropertyUtil.initialProperty(Constant.APP_STRING , libName , className);
+            String path = PropertyUtil.path;
             log.info("AppServiceImpl method run() RUNNING with PATH {}", path);
             // load Class from Main
             log.info("AppServiceImpl method run() RUNNING with ClassNAME {}", className);
@@ -64,7 +64,7 @@ public class AppServiceImpl implements AppService {
             log.info("STATUS IN REDIS : {}", status);
             if (Constant.STATUS_CHANGED.equals(status)) {
                 // load class again
-                classLoaded = ClassesConfig.getCurrentClass(PropertyInfo.clazzName, false, path);
+                classLoaded = ClassesConfig.getCurrentClass(PropertyUtil.clazzName, false, path);
                 // and set status in redis is 'not change: 0'
                 // set value for class in Main
                 jedis.hset(Constant.KEY_CHECK_CHANGE, Constant.STATUS_STR, Constant.STATUS_DEFAULT);

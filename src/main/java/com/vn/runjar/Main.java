@@ -2,7 +2,7 @@ package com.vn.runjar;
 
 import com.vn.runjar.config.ClassesConfig;
 import com.vn.runjar.constant.Constant;
-import com.vn.runjar.model.PropertyInfo;
+import com.vn.runjar.utils.PropertyUtil;
 import com.vn.runjar.schedule.MyTaskTimer;
 import com.vn.runjar.utils.AppUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +16,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-        PropertyInfo.instance(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
+        PropertyUtil.instance(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
         initClass(Constant.MAIN_STRING, Constant.EMPTY, Constant.EMPTY);
-        String time = PropertyInfo.period;
+        String time = PropertyUtil.period;
         MyTaskTimer schedule = new MyTaskTimer();
         // creating timer task, timer
         Timer timer = new Timer();
@@ -36,11 +36,11 @@ public class Main {
     public static Class<?> initClass(String key ,String libName , String className) {
         log.info("MAIN initClass() START");
         if (clazz == null) {
-            PropertyInfo.initialProperty(key , libName , className);
+            PropertyUtil.initialProperty(key , libName , className);
             log.info("MAIN initClass() with Property CLASS NAME : {}" , className);
-            clazz = ClassesConfig.getCurrentClass(PropertyInfo.clazzName,
+            clazz = ClassesConfig.getCurrentClass(PropertyUtil.clazzName,
                     true,
-                    PropertyInfo.path);
+                    PropertyUtil.path);
         }
         log.info("MAIN initClass() END");
         return clazz;

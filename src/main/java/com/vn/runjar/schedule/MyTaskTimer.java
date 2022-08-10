@@ -3,7 +3,7 @@ package com.vn.runjar.schedule;
 import com.vn.runjar.config.JedisPoolFactory;
 import com.vn.runjar.constant.Constant;
 import com.vn.runjar.exception.VNPAYException;
-import com.vn.runjar.model.PropertyInfo;
+import com.vn.runjar.utils.PropertyUtil;
 import com.vn.runjar.utils.AppUtil;
 import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.Jedis;
@@ -29,8 +29,8 @@ public class MyTaskTimer extends TimerTask {
 //            log.info("MyTaskTimer run() RUNNING with Status had CHANGE");
 //            status = false;
 //        }
-        PropertyInfo.initialProperty(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
-        String path = PropertyInfo.path;
+        PropertyUtil.initialProperty(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
+        String path = PropertyUtil.path;
         // check By Sum
         checkBySum(jedisPool, path);
         log.info("MyTaskTimer run() END");

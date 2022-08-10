@@ -1,8 +1,7 @@
-package com.vn.runjar.model;
+package com.vn.runjar.utils;
 
 import com.vn.runjar.constant.Constant;
 import com.vn.runjar.exception.VNPAYException;
-import com.vn.runjar.utils.AppUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.InputStream;
@@ -13,8 +12,8 @@ import java.util.Objects;
 import java.util.Properties;
 
 @Slf4j
-public class PropertyInfo {
-    private static PropertyInfo _instance = null;
+public class PropertyUtil {
+    private static PropertyUtil _instance = null;
     public static String path = null;
     public static String period = null;
     public static String clazzName = null;
@@ -53,10 +52,10 @@ public class PropertyInfo {
         }
     }
 
-    public static PropertyInfo instance(String key , String libName ,String className) {
+    public static PropertyUtil instance(String key , String libName , String className) {
         log.info("PropertyInfo instance() START with key {} " , key);
         if (_instance == null) {
-            _instance = new PropertyInfo();
+            _instance = new PropertyUtil();
             initialProperty(key , libName , className);
             log.info("PropertyInfo instance() CREATE NEW PROPERTY");
         }
