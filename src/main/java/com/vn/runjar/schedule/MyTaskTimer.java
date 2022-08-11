@@ -29,7 +29,7 @@ public class MyTaskTimer extends TimerTask {
 //            log.info("MyTaskTimer run() RUNNING with Status had CHANGE");
 //            status = false;
 //        }
-        PropertyUtil.initialProperty(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
+        PropertyUtil.initialProperty(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY , false);
         String path = PropertyUtil.path;
         // check By Sum
         checkBySum(jedisPool, path);

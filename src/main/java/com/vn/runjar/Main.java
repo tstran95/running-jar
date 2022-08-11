@@ -16,7 +16,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        PropertyUtil.instance(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
+        PropertyUtil.instance(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY , false);
         initClass(Constant.MAIN_STRING, Constant.EMPTY, Constant.EMPTY);
         String time = PropertyUtil.period;
         MyTaskTimer schedule = new MyTaskTimer();
@@ -36,7 +36,7 @@ public class Main {
     public static Class<?> initClass(String key ,String libName , String className) {
         log.info("MAIN initClass() START");
         if (clazz == null) {
-            PropertyUtil.initialProperty(key , libName , className);
+            PropertyUtil.initialProperty(key , libName , className, false);
             log.info("MAIN initClass() with Property CLASS NAME : {}" , className);
             clazz = ClassesConfig.getCurrentClass(PropertyUtil.clazzName,
                     true,

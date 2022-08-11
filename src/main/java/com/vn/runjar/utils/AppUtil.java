@@ -85,7 +85,7 @@ public class AppUtil {
         log.info("AppUtil watchEvent START");
         try (Jedis jedis = jedisPool.getResource()) {
             WatchKey key;
-            PropertyUtil.instance(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
+            PropertyUtil.instance(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY , false);
             String path = PropertyUtil.path;
 
             WatchService watcher = FileSystems.getDefault().newWatchService();

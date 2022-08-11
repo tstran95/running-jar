@@ -18,7 +18,7 @@ public class PropertyUtil {
     public static String period = null;
     public static String clazzName = null;
 
-    public static void initialProperty(String key , String nameLib , String className) {
+    public static void initialProperty(String key , String nameLib , String className , boolean classNameChanged) {
         try {
             log.info("PropertyInfo initialProperty() START");
             String pathParent = Objects.requireNonNull(AppUtil.class.getResource("/")).getPath();
@@ -38,7 +38,7 @@ public class PropertyUtil {
             InputStream is = Files.newInputStream(Paths.get(url));
             Properties props = new Properties();
             props.load(is);
-            if (!Constant.EMPTY.equals(nameLib) || !Constant.EMPTY.equals(className)){
+            if (classNameChanged){
                 AppUtil.readAndWriteFileProps(url ,nameLib , className);
                 log.info("PropertyInfo initialProperty() WRITE AGAIN");
             }
@@ -52,11 +52,11 @@ public class PropertyUtil {
         }
     }
 
-    public static PropertyUtil instance(String key , String libName , String className) {
+    public static PropertyUtil instance(String key , String libName , String className , boolean classNameChanged) {
         log.info("PropertyInfo instance() START with key {} " , key);
         if (_instance == null) {
             _instance = new PropertyUtil();
-            initialProperty(key , libName , className);
+            initialProperty(key , libName , className , classNameChanged);
             log.info("PropertyInfo instance() CREATE NEW PROPERTY");
         }
         log.info("PropertyInfo instance() END with {}" , _instance.toString() );

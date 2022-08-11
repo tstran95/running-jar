@@ -51,10 +51,20 @@ public class AppServiceImpl implements AppService {
 
             String className = classInfo.getClassName();
             String libName = Objects.isNull(classInfo.getLibName()) ? Constant.EMPTY : classInfo.getLibName();
+            String classNameRedis = jedis.hget(Constant.KEY_CHECK_CHANGE, Constant.CLASS_NAME);
+            boolean classNameChanged = false;
+
+            if (!className.equals(classNameRedis)) {
+                log.info("THE LIB IS LOADING");
+                classNameChanged = true;
+                jedis.hset(Constant.KEY_CHECK_CHANGE, Constant.CLASS_NAME , className);
+            }
+
             log.info("AppServiceImpl method run() RUNNING with LibName {}", libName);
-            PropertyUtil.initialProperty(Constant.APP_STRING , libName , className);
+            PropertyUtil.initialProperty(Constant.APP_STRING , libName , className , classNameChanged);
             String path = PropertyUtil.path;
             log.info("AppServiceImpl method run() RUNNING with PATH {}", path);
+
             // load Class from Main
             log.info("AppServiceImpl method run() RUNNING with ClassNAME {}", className);
             Class<?> classLoaded = Main.initClass(Constant.APP_STRING ,libName , className);
@@ -71,8 +81,7 @@ public class AppServiceImpl implements AppService {
                 Main.changeValueClass(classLoaded);
                 log.info("THE FILE HAD BEEN CHANGED");
             }
-            if (!classLoaded.toString().contains(className)) {
-                log.info("THE LIB IS LOADING");
+            if (classNameChanged) {
                 return Response.getResponse(Constant.OK, Constant.PROCESSING , Constant.LOADING_LIB , classInfo.getTokenID());
             }
             //invoke method into jar file
