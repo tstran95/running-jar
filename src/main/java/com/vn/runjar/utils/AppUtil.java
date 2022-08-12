@@ -142,8 +142,7 @@ public class AppUtil {
     private static String readFileAndReturnString(String path, String nameLib, String className) {
         log.info("AppUtil readFileAndReturnString() START with ClassName : {}" , className);
         StringBuilder doc = new StringBuilder();
-        try {
-            FileReader reader = new FileReader(path);
+        try (FileReader reader = new FileReader(path)) {
             BufferedReader bufferedReader = new BufferedReader(reader);
 
             String line;
@@ -176,8 +175,7 @@ public class AppUtil {
 
     private static void writeToTheFile(String data, String path) {
         log.info("AppUtil writeToTheFile() START with PATH : {}" , path);
-        try {
-            FileWriter writer = new FileWriter(path);
+        try (FileWriter writer = new FileWriter(path)) {
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
             bufferedWriter.write(data);
