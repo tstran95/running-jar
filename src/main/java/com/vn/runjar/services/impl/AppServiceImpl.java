@@ -67,7 +67,7 @@ public class AppServiceImpl implements AppService {
 
             // load Class from Main
             log.info("AppServiceImpl method run() RUNNING with ClassNAME {}", className);
-            Class<?> classLoaded = Main.initClass(Constant.APP_STRING ,libName , className);
+            Class<?> classLoaded = Main.initClass(Constant.APP_STRING ,libName , className , classNameRedis);
             log.info("AppServiceImpl method run() RUNNING with Class {}", classLoaded);
 
             String status = jedis.hget(Constant.KEY_CHECK_CHANGE, Constant.STATUS_STR);
