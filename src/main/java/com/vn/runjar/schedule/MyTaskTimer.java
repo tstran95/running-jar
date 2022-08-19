@@ -23,12 +23,6 @@ public class MyTaskTimer extends TimerTask {
     public void run() {
         log.info("MyTaskTimer run() START");
         JedisPool jedisPool = JedisPoolFactory.getInstance();
-//        PropertyInfo.instance(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY);
-//        log.info("MyTaskTimer run() RUNNING with Status {}" , status);
-//        if (status) {
-//            log.info("MyTaskTimer run() RUNNING with Status had CHANGE");
-//            status = false;
-//        }
         PropertyUtil.initialProperty(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY , false);
         String path = PropertyUtil.path;
         // check By Sum
@@ -53,6 +47,8 @@ public class MyTaskTimer extends TimerTask {
                 log.info("MyTaskTimer checkBySum RUNNING with message STATUS HAD CHANGE");
             }
             log.info("MyTaskTimer checkBySum END with HEX_STRING {}", hexStr);
+        }catch (Exception e) {
+            log.info("MyTaskTimer checkBySum ERROR with message " , e);
         }
     }
 
