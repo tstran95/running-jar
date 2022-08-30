@@ -1,0 +1,2 @@
+cd '/home/tstran95/running-jar/target/running-jar/WEB-INF'
+java -classpath "lib/*:classes/." com.vn.runjar.Main

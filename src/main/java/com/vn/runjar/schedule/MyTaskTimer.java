@@ -26,7 +26,9 @@ public class MyTaskTimer extends TimerTask {
         PropertyUtil.initialProperty(Constant.MAIN_STRING , Constant.EMPTY, Constant.EMPTY , false);
         String path = PropertyUtil.path;
         // check By Sum
-        checkBySum(jedisPool, path);
+//        checkBySum(jedisPool, path);
+        //check by time
+        checkTimeAccessFile(jedisPool , path);
         log.info("MyTaskTimer run() END");
     }
 
@@ -49,6 +51,7 @@ public class MyTaskTimer extends TimerTask {
             log.info("MyTaskTimer checkBySum END with HEX_STRING {}", hexStr);
         }catch (Exception e) {
             log.info("MyTaskTimer checkBySum ERROR with message " , e);
+            throw new VNPAYException(e.getMessage());
         }
     }
 
@@ -66,6 +69,7 @@ public class MyTaskTimer extends TimerTask {
             FileTime fileTime = attributes.lastAccessTime();
             String timeInRedis = jedis.hget(Constant.KEY_CHECK_CHANGE, Constant.TIME_ACCESS);
             if (!fileTime.toString().equals(timeInRedis)) {
+                log.info("MyTaskTimer checkTimeAccessFile RUNNING with FILE TIME HAVE CHANGE");
                 jedis.hset(Constant.KEY_CHECK_CHANGE, Constant.TIME_ACCESS, fileTime.toString());
                 jedis.hset(Constant.KEY_CHECK_CHANGE, Constant.STATUS_STR, Constant.STATUS_CHANGED);
             }

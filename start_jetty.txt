@@ -1,0 +1,2 @@
+cd '/home/tstran95/running-jar'
+mvn jetty:run

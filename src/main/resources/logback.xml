@@ -84,9 +84,6 @@
 
     <logger name="com.vn.runjar">
         <appender-ref ref="console"/>
-<!--        <appender-ref ref="FILE-INFO" />-->
-<!--        <appender-ref ref="FILE-WARN" />-->
-<!--        <appender-ref ref="FILE-ERROR" />-->
     </logger>
 
     <root level="all">
