@@ -1,5 +1,5 @@
 <configuration>
-    <property name="LOG" value="../running-jar/logs"/>
+    <property name="LOG" value="../logs"/>
     <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
 
 

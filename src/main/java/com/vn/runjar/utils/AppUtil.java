@@ -65,12 +65,12 @@ public class AppUtil {
      * @return Long
      */
     public static long parseLong(String value) {
-        log.info("AppUtil parseLong() START with request : {}", value);
+//        log.info("AppUtil parseLong() START with request : {}", value);
         try {
-            log.info("AppUtil parseLong() END");
+//            log.info("AppUtil parseLong() END");
             return Long.parseLong(value);
         } catch (NumberFormatException e) {
-            log.info("AppUtil parseLong() ERROR with exception : ", e);
+//            log.info("AppUtil parseLong() ERROR with exception : ", e);
             throw new VNPAYException(Constant.PARSE_STRING_TO_LONG_ERROR);
         }
     }

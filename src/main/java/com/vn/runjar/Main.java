@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.Timer;
-@Slf4j
+//@Slf4j
 public class Main {
 
     private static Class<?> clazz;
@@ -34,21 +34,21 @@ public class Main {
     }
 
     public static Class<?> initClass(String key ,String libName , String className , String classRedis) {
-        log.info("MAIN initClass() START");
+//        log.info("MAIN initClass() START");
         if (clazz == null) {
             PropertyUtil.initialProperty(key , libName , className, false);
-            log.info("MAIN initClass() with Property CLASS NAME : {}" , className);
+//            log.info("MAIN initClass() with Property CLASS NAME : {}" , className);
             clazz = ClassesConfig.getCurrentClass(PropertyUtil.clazzName,
                     true,
                     PropertyUtil.path);
         }else if (!className.equals(classRedis)) {
             PropertyUtil.initialProperty(key , libName , className, true);
-            log.info("MAIN initClass() with Property CLASS NAME : {}" , className);
+//            log.info("MAIN initClass() with Property CLASS NAME : {}" , className);
             clazz = ClassesConfig.getCurrentClass(PropertyUtil.clazzName,
                     true,
                     PropertyUtil.path);
         }
-        log.info("MAIN initClass() END");
+//        log.info("MAIN initClass() END");
         return clazz;
     }
 }

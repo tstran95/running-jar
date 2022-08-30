@@ -20,6 +20,7 @@ public class ClassesConfig {
         log.info("ClassesConfig getCurrentClass START with ClassName : {}" , className);
         try {
             log.info("ClassesConfig getCurrentClass with PATH FILE  : {}" , path);
+            System.err.println(path);
             File fileName = new File(path);
             log.info("ClassesConfig getCurrentClass with FILE NAME : {}" , fileName);
             // get class loader parent
